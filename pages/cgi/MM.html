@@ -1,0 +1,141 @@
+  <!-- Modal Movimiento de Mercaderia  -->
+       <div class="modal fade" id="FMM" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title" id="myModalLabel">Movimiento de Mercaderia</h4>
+                  </div>
+                  <div class="modal-body"><label id="MMId" class="NV">0</label>
+                      <div class="col-xs-4">
+                        <div class="form-group input-group" style="margin-bottom: initial;">
+                          <span class="input-group-addon"><p style="margin: 0px;"> COD:</p></span>
+                          <input class="form-control TC" placeholder="Codigo" id="MMCod" autocomplete="off" type="text" onkeypress="DeHasta('MMCod','MMDe')"  onblur="MMTmp()">
+                        </div>
+                      </div> <!-- cod -->
+                      <div class="col-xs-8">
+                          <h4  style="background:#f3f9f9;border: 1px solid black ;padding:6px;margin-top:0px;border-radius:8px;" id="MMArt"> Articulo</h4>
+                      </div>
+                      <div class="col-xs-6">
+                          <div class="form-group input-group">
+                              <span class="input-group-addon"><p style="margin: 0px;">De</p></span>
+                              <select name="Proveedor" id="MMDe" class="form-control" onkeypress="DeHasta('MMDe','MMA')">
+                                  <option value="3" data-s="0" id="mmdepo" >Deposito</option>
+                                  <option value="1" data-s="0" id="mmadro">Adrogue</option>
+                                  <option value="2" data-s="0" id="mmburz">Burzaco</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="col-xs-6">
+                          <div class="form-group input-group">
+                              <span class="input-group-addon"><p style="margin: 0px;">A :</p></span>
+                              <select name="Proveedor" id="MMA" class="form-control"  onkeypress="DeHasta('MMA','MMCan')">
+                                  <option value="1" data-s="0" id="mmadro2" >Adrogue</option>
+                                  <option value="2" data-s="0" id="mmburz2" >Burzaco</option>
+                                  <option value="3" data-s="0" id="mmdepo2">Deposito</option>
+                              </select>
+                          </div>
+                      </div>
+
+                      <div class="col-xs-5">
+                          <div class="form-group input-group" style="margin-bottom: initial;">
+                              <span class="input-group-addon"><p style="margin: 0px;"> Cantidad:</p></span>
+                              <input class="form-control TC" placeholder="Cantidad" id="MMCan"  onkeypress="DeHasta('MMA','MMCan')"  autocomplete="off" type="text">
+                          </div>
+                      </div>
+                      <div class="col-xs-2"></div>
+                      <div class="col-xs-5">
+                          <button type="button" class="btn btn-info btn-lg btn-block" id="MMEnvia" onclick="MMEnviar()" >Enviar</button>
+                      </div>
+                  </div>
+                  <div class="modal-footer" style="border-top: 0px">
+              </div>
+          </div>
+      </div>
+      <!-- /.modal -->
+<script>
+ function LimpiarMM(){
+     document.getElementById("MMId").innerHTML="";
+     document.getElementById("MMArt").innerHTML =" Articulo ";
+     document.getElementById("MMCan").value = "";
+     document.getElementById("mmadro").text = "Adrogue";
+     document.getElementById("mmadro2").text = "Adrogue";
+     document.getElementById("mmburz2").text = "Burzaco";
+     document.getElementById("mmburz").text = "Burzaco";
+     document.getElementById("mmdepo2").text = "Deposito";
+     document.getElementById("mmdepo").text = "Deposito";
+     document.getElementById("MMCod").value =""
+ }
+ function MM(cod) {
+      if(cod==0){
+          $("#FMM").modal("show");
+          LimpiarMM();
+          document.getElementById("MMCod").select();
+          return 0;
+      }
+       var d = {Cod:cod,H:3};
+       $.post('cgi/Art.php', d, function (res) {
+
+           $("#FMM").modal("show");
+           var Datos = res.split("|");
+           try {
+               if (  Datos[0] <1 ){
+                    alert("Sin datos");
+                   LimpiarMM();
+                  // $("#FMM").modal("hide");
+                   return 0;
+                 }
+               //$("#MMId").text = Datos[0];
+               document.getElementById("MMId").innerHTML=Datos[0];
+               document.getElementById("MMArt").innerHTML = Datos[1];
+               document.getElementById("MMCod").value = Datos[2];
+               document.getElementById("MMCan").value = "";
+               document.getElementById("mmadro").text = "Adrogue    * " + Datos[8];
+               document.getElementById("mmadro").setAttribute("data-s",Datos[8]);
+               document.getElementById("mmadro2").text = "Adrogue    * " + Datos[8];
+               document.getElementById("mmadro2").setAttribute("data-s",Datos[8]);
+               document.getElementById("mmburz").text = "Burzaco    * " + Datos[9];
+               document.getElementById("mmburz").setAttribute("data-s",Datos[9]);
+               document.getElementById("mmburz2").text = "Burzaco    * " + Datos[9];
+               document.getElementById("mmburz2").setAttribute("data-s",Datos[9]);
+               document.getElementById("mmdepo").text = "Deposito    * " + Datos[10];
+               document.getElementById("mmdepo").setAttribute("data-s",Datos[10]);
+               document.getElementById("mmdepo2").text = "Deposito    * " + Datos[10];
+               document.getElementById("mmdepo2").setAttribute("data-s",Datos[10]);
+           }
+           catch(e){
+               alert("Sin datos");
+           }
+               setTimeout(function(){document.getElementById("MMDe").focus();}, 1000);
+
+       });// Fin Post
+
+   }
+function MMTmp(){var x=document.getElementById("MMCod").value ; MM(x);}
+
+function MMEnviar(){
+       var id,cant,des1,des2,d,max1,max2;
+    id= document.getElementById("MMId").innerHTML;
+    cant= parseInt(document.getElementById("MMCan").value);
+    des1= document.getElementById("MMDe").value;
+    des2= document.getElementById("MMA").value;
+    max1=parseInt(document.getElementById("MMDe").options[document.getElementById("MMDe").selectedIndex].getAttribute("data-s"));
+    //max2=document.getElementById("MMA").options[document.getElementById("MMA").selectedIndex].getAttribute("data-s");
+   if(des1==des2){
+       alert("El origen y el destino no pueden ser iguales.");
+       return 0;
+   }
+    if(cant>max1){
+        alert("La cantidad no puede superar al maximo disponible.");
+        return 0;
+    }
+// aca va el auditor  // ******
+     d={ID:id,Lugar:des1,Stock:cant,Serial:des2,a:max1,b:max2};
+// ******************************* //
+     AStock(3, id, cant, des1); // retira
+     AStock(4, id, cant, des2); // Asigna
+     $("#FMM").modal("hide");
+
+ }
+</script>
+ 

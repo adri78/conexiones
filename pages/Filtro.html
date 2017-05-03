@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="page-header">
+                Filtrando una tabla
+            </h1>
+
+            <p>
+                Las reglas de este evento consiste en desarrollar un algoritmo en javascript que <b>permita filtrar</b> el resultado de la tabla en <b>base al criterio que uno escriba</b> en el <b>campo de búsqueda</b>.
+            </p>
+
+
+            <!-- TABLA INICIA -->
+            <table id="tabla" class="table table-striped">
+                <thead>
+                <tr>
+                    <th style="width:160px">Nombre</th>
+                    <th>Apellido</th>
+                    <th style="width:220px">Profesion</th>
+                    <th style="width:140px">Sueldo</th>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <input id="buscar" type="text" class="form-control" placeholder="Escriba algo para filtrar" />
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Juan</td>
+                    <td>Perez Patiño</td>
+                    <td>Marketing Empresarial</td>
+                    <td class="text-right">S/. 9000.00</td>
+                </tr>
+                <tr>
+                    <td>Alberto</td>
+                    <td>Gonzales Flores</td>
+                    <td>Derecho</td>
+                    <td class="text-right">S/. 4000.00</td>
+                </tr>
+                <tr>
+                    <td>Gustavo</td>
+                    <td>Bueno Bravo</td>
+                    <td>Derecho</td>
+                    <td class="text-right">S/. 7000.00</td>
+                </tr>
+                <tr>
+                    <td>Enrique</td>
+                    <td>Pacheco Perez</td>
+                    <td>Derecho</td>
+                    <td class="text-right">S/. 12000.00</td>
+                </tr>
+                <tr>
+                    <td>Jaime</td>
+                    <td>Andrade Gonzales</td>
+                    <td>Economia</td>
+                    <td class="text-right">S/. 7500.00</td>
+                </tr>
+                <tr>
+                    <td>Andrea</td>
+                    <td>Loayza Perez</td>
+                    <td>Medicina Humana</td>
+                    <td class="text-right">S/. 7500.00</td>
+                </tr>
+                <tr>
+                    <td>Elvira</td>
+                    <td>Gonzales Perez</td>
+                    <td>Ingeniería de Sistema</td>
+                    <td class="text-right">S/. 7500.00</td>
+                </tr>
+                <tr>
+                    <td>Joseph</td>
+                    <td>Rodriguez Pacheco</td>
+                    <td>Ingeniería de Software</td>
+                    <td class="text-right">S/. 8200.00</td>
+                </tr>
+                <tr>
+                    <td>Pedro</td>
+                    <td>kuczynski</td>
+                    <td>Economista</td>
+                    <td class="text-right">S/. 250000.00</td>
+                </tr>
+                <tr>
+                    <td>Alan</td>
+                    <td>García Perez</td>
+                    <td>Derecho</td>
+                    <td class="text-right">S/. 120000.00</td>
+                </tr>
+                <tr>
+                    <td>Jose</td>
+                    <td>Villanueva Salvador</td>
+                    <td>Medicina Humana</td>
+                    <td class="text-right">S/. 2900.00</td>
+                </tr>
+                <tr>
+                    <td>Alberto</td>
+                    <td>Lozano García</td>
+                    <td>Medicina Humana</td>
+                    <td class="text-right">S/. 2900.00</td>
+                </tr>
+                </tbody>
+            </table>
+            <!-- TABLA FINALIZA -->
+
+
+        </div>
+    </div>
+</div>
+<script>
+    document.querySelector("#buscar").onkeyup = function(){
+        $TableFilter("#tabla", this.value);
+    }
+
+    $TableFilter = function(id, value){
+        var rows = document.querySelectorAll(id + ' tbody tr');
+
+        for(var i = 0; i < rows.length; i++){
+            var showRow = false;
+
+            var row = rows[i];
+            row.style.display = 'none';
+
+            for(var x = 0; x < row.childElementCount; x++){
+                if(row.children[x].textContent.toLowerCase().indexOf(value.toLowerCase().trim()) > -1){
+                    showRow = true;
+                    break;
+                }
+            }
+
+            if(showRow){
+                row.style.display = null;
+            }
+        }
+    }
+   /* let partial = function(fn) {
+        let pastArgs = [...arguments].slice(1);
+        return function() {
+            let newArgs = [...arguments];
+            return fn.apply(null, pastArgs.concat(newArgs));
+        }
+    };
+
+    let extractRows = (tbody) => {
+        var nodeList = tbody.querySelectorAll('tr');
+        return [...nodeList].map((tr) => {
+            tr.data = tr.innerText.toLowerCase();
+        return tr;
+    })
+    };
+
+    let updateVisibility = (text, row) => {
+        row.style.display = row.data.indexOf(text) > -1 ? '': 'none';
+    };
+
+    let filterRows = ({elem, rows, errorElem}) => {
+        let inputVal = elem.value.toLowerCase();
+        rows.forEach(partial(updateVisibility, inputVal));
+        errorElem.innerHTML = rows.filter(tr => tr.style.display !== 'none').length === 0 ?
+            `<div>No hay criterios de búsqueda para el ${inputVal} ingresado</div>`: '';
+        errorElem.style.display = '';
+    };
+
+    const tableId = '#tabla';
+    let tbody = document.querySelector(`${tableId} tbody`);
+    let errorElem = document.createElement('tr');
+    tbody.appendChild(errorElem);
+
+    let rows = extractRows(tbody);
+    let inputElem = document.getElementById('buscar');
+    inputElem.onkeyup = partial(filterRows, {elem: inputElem , rows, errorElem});
+
+*/
+</script>
+</body>
+</html>
