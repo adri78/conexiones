@@ -19,15 +19,12 @@ if (!mysqli_set_charset($conexion, "utf8")) {
 $marca="";
 if(isset($_GET["T"])){ $modo=$_GET["T"]; }
 if(isset($_GET["D"])){ $marca=$_GET["D"]; }
+if(isset($_GET["ID"])){ $ID=$_GET["ID"];}
+
 if(isset($_POST["D"])){ $marca=$_POST["D"]; }
 if(isset($_POST["T"])){ $modo=$_POST["T"]; }
 if(isset($_POST["ID"])){ $ID=$_POST["ID"];}
 if(isset($_POST["N"])){ $N=$_POST["N"]; }
-
-/* d={T:80,ID:ID,Marca:idMarca,Repuesto:idRepu,Equipo:idEquipo,Provee:idProvee,
-    Costo:Costo,P1:Precio1,P2:Precio2,P3:Precio3,Stock:Stock,CStock:CStock};
-
- */
 
 if(isset($_POST["Marca"])){ $Marca=$_POST["Marca"]; }
 if(isset($_POST["Repuesto"])){ $Repuesto=$_POST["Repuesto"]; }
@@ -42,6 +39,41 @@ if(isset($_POST["Color"])){ $Color=$_POST["Color"]; }
 if(isset($_POST["Visible"])){ $Visible=($_POST["Visible"]=='true')? 1:0; }
 if(isset($_POST["CStock"])){ $CStock= ($_POST["CStock"]=='true')? 1:0; }
 
+
+
+/**********************************************************************************************/
+
+
+if ($modo==1000) { //Lee Repuesto
+    $sql = "SELECT `id_R`, `EquipoId`, `MarcaID`, `ProveeID`, `TipoId`, `Costo`, `P1`, `P2`, `P3`, `Stock`, `CStock`,`Color1`,`Visible` FROM `t_repuestos` ";
+    $sql = $sql . " WHERE `id_R`='" . $ID . "';";
+    $segmento = mysqli_query($conexion, $sql);
+    while ($row = mysqli_fetch_array($segmento)) {
+        Print $row['id_R'] . "|" . $row['EquipoId'] . "|" . $row['MarcaID'] . "|" . $row['ProveeID'] . "|" . $row['TipoId'] . "|" . $row['Costo'] . "|" . $row['P1'] . "|" . $row['P2'] . "|" . $row['P3'] . "|" . $row['Stock'] . "|" . $row['CStock'] . "|" . $row['Color1'] . "|" . $row['Visible'];
+    }
+}
+
+if ($modo==1001) { //Lee Repuesto
+    $sql="SELECT `id_R`, `EquipoId`, `MarcaID`,(SELECT `Proveedor` FROM `t_proveedor` WHERE `idProvee`=`ProveeID`) as Provee ,(SELECT `Tipo` FROM `t_tipo` WHERE `idTipo`=`TipoId`) as re , `Costo`, `P1`, `P2`, `P3`, `Stock`, `CStock`,( SELECT `color` FROM `t_color` WHERE `idco`=`Color1` ) as colores,`Visible` FROM `t_repuestos` ";
+
+    $segmento = mysqli_query($conexion,$sql);
+    while ($row = mysqli_fetch_array($segmento)) {
+        $vi= ($row['Visible']==1)? "Visible":"Oculto";
+       echo "<tr onclick='res(".$row['id_R'].")'><td>".$row['re']."</td><td>".$vi."</td><td>".$row['colores']."</td><td>".$row['Costo']."</td><td>";
+       echo  $row['P1']."</td><td>".$row['P2']."</td><td>".$row['P3']."</td><td>".$row['Stock']."</td><td>".$row['Provee']."</td></tr>";
+    }
+}
+
+if ($modo==1002) { //Lee Repuesto
+    $sql="SELECT `id_R`, `EquipoId`, `MarcaID`,(SELECT `Proveedor` FROM `t_proveedor` WHERE `idProvee`=`ProveeID`) as Provee ,(SELECT `Tipo` FROM `t_tipo` WHERE `idTipo`=`TipoId`) as re , `Costo`, `P1`, `P2`, `P3`, `Stock`, `CStock`,( SELECT `color` FROM `t_color` WHERE `idco`=`Color1` ) as colores,`Visible` FROM `t_repuestos` ";
+    $sql = $sql . " WHERE `id_R`='" . $ID . "';";
+    $segmento = mysqli_query($conexion,$sql);
+    while ($row = mysqli_fetch_array($segmento)) {
+        $vi= ($row['Visible']==1)? "Visible":"Oculto";
+        echo "<tr onclick='res(".$row['id_R'].")'><td>".$row['re']."</td><td>".$vi."</td><td>".$row['colores']."</td><td>".$row['Costo']."</td><td>";
+        echo  $row['P1']."</td><td>".$row['P2']."</td><td>".$row['P3']."</td><td>".$row['Stock']."</td><td>".$row['Provee']."</td></tr>";
+    }
+}
 /* ***************************  Manejo de Respuestos   ************************************* */
 if ($modo==70) { //Listado de reapaciones
     if ($marca > 0) { // en relaidad id
@@ -64,9 +96,8 @@ if ($modo==80) { //Graba Repuesto
          $sql=$sql."`Costo`='".$Costo."',`P1`='".$P1."',`P2`='".$P2."',`P3`='".$P3."',`Stock`='".$Stock."',`CStock`='".$CStock."',`Visible`='".$Visible."',`Color1`='".$Color."' WHERE `id_R`='".$ID."';";
      }else{
          if ( $Stock<0 || $Stock==''){$Stock=0;}
-
-         $sql="INSERT INTO `t_repuestos`(`EquipoId`, `MarcaID`, `ProveeID`, `TipoId`, `Costo`, `P1`, `P2`, `P3`, `Stock`, `CStock`, `Color1`,`Visible`) VALUES ('";
-         $sql=$sql.$Equipo."','".$Marca."','".$Provee."','".$Repuesto."','".$Costo."','".$P1 ."','". $P2."','". $P3."','". $Stock."','".$CStock."','".$Color."');";
+         $sql="INSERT INTO `t_repuestos`( `EquipoId`, `MarcaID`, `ProveeID`, `TipoId`, `Color1`, `Costo`, `P1`, `P2`, `P3`, `Stock`, `CStock`, `Visible`) VALUES('";
+         $sql=$sql.$Equipo."','".$Marca."','".$Provee."','".$Repuesto."','".$Color."','".$Costo."','".$P1 ."','". $P2."','". $P3."','". $Stock."','".$CStock."','".$Visible."');";
      }
 
  print $sql;
@@ -295,6 +326,10 @@ if ($modo==210) { //Lista todos los TIPOS
         echo '<option value="'.$row["id_equi"].'">'.$row["Equipo"].'</option>';
     }
 }
+
+
+
+
 
 //print $sql;
 ?>

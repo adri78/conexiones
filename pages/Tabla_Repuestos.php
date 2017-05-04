@@ -72,9 +72,7 @@ function pulsar(e) {
 ?>
     <div class="row">
       <label class="" id="ID">0</label>
-        <div class="col-xs-2" style="margin-left: 15px;">
-            <button class="btn btn-success btn-lg" style="width: 100%;">NUEVO</button>
-        </div>
+
         <div class="col-xs-3" style="margin-left: 10px;">
             <div class="form-group input-group">
                 <span class="input-group-addon B"><buton class="btn btn-danger" onclick="BtnMarca()">Marca</buton></span>
@@ -86,10 +84,13 @@ function pulsar(e) {
             <div class="form-group input-group" style="z-index: 100;" >
                 <span class="input-group-addon B"><buton class="btn btn-danger" onclick="BtnEquipo()">Model</buton></span>
                 <section id="intro" >
-                    <select id="LstEquipos" class="form-control" id="LstEquipos" onfocus='REC3("LstEquipos")'>
+                    <select id="LstEquipos" class="form-control" id="LstEquipos" onfocus='REC3("LstEquipos")' onchange="LstRepu" >
                     </select>
                 </section>
             </div>
+        </div>
+        <div class="col-xs-2" style="margin-left: 15px;">
+            <button class="btn btn-success btn-lg" onclick="Novo();" style="width: 100%;">NUEVO</button>
         </div>
         <br>
         <div class="col-xs-12" >
@@ -111,17 +112,7 @@ function pulsar(e) {
                     <td>p2</td>
                     <td>P3</td>
                  </tr>
-                <tr>
-                    <td>stock</td>
-                    <td>Marca - Tipo</td>
-                    <td>Equipo</td>
-                    <td>P1</td>
-                    <td>p2</td>
-                    <td>P3</td>
-                    <td>P1</td>
-                    <td>p2</td>
-                    <td>P3</td>
-                    </tr>
+
                 </tbody></table>
         </div> <!-- Fin ListaArt -->
         </div>
@@ -149,17 +140,15 @@ function pulsar(e) {
                <div class="modal-body">
                     <div class="col-xs-6 Y">
                   <div class="form-group input-group">
-                      <span class="input-group-addon B"><buton class="btn btn-info" onclick="BtnRepuesto()">Repu.</buton></span>
-                      <select name="LstRepuesto"  class="form-control Z" id="LstRepuesto" onfocus='REC2();'>
-
+                      <span class="input-group-addon">Repuestos</span>
+                      <select name="LstRepuesto"  class="form-control Z" id="LstRepuesto" >
                       </select>
                   </div>
               </div>
                     <div class="col-xs-6 Y">
                   <div class="form-group input-group">
-                      <span class="input-group-addon B"><buton class="btn btn-info" onclick="BtnColor()">Color.</buton></span>
-                      <select name="LstColor"  class="form-control Z" onkeyup="DeHasta('LstColor','Costo');"  id="LstColor" onfocus='REC5();'>
-
+                      <span class="input-group-addon">Color</span>
+                      <select name="LstColor"  class="form-control Z" onkeyup="DeHasta('LstColor','Costo');"  id="LstColor" >
                       </select>
                   </div>
               </div>
@@ -181,49 +170,53 @@ function pulsar(e) {
                       <input type="text" id="Precio2" class="form-control TD" onkeyup="DeHasta('Precio2','Precio3');">
                   </div>
               </div>
-                    <div class="col-xs-6">
+              <div class="col-xs-6">
                   <div class="form-group input-group">
                       <span class="input-group-addon">Precio3</span>
                       <input type="text" id="Precio3" class="form-control TD"  onkeyup="DeHasta('Precio3','Stock');">
                   </div>
               </div>
-                    <div class="col-xs-12">
-                        <div class="form-group input-group">
-                      <span class="input-group-addon B"><buton class="btn btn-info" onclick="BtnProvee()">Provee.</buton></span>
-                      <select name="LstProvee"  class="form-control Z" id="LstProvee" onfocus='REC4();'>
-                      </select>
-                  </div>
-              </div>
-                    <div class="col-xs-6 Y">
+             <div class="col-xs-6">
                   <div class="form-group input-group">
+                      <span class="input-group-addon ">Proveedor</span>
+                      <select name="LstProvee"  class="form-control Z" id="LstProvee" >
+                      </select>
+                   </div>
+              </div>
+             <div class="col-xs-6">
+                   <div class="form-group input-group">
+                       <span class="input-group-addon">STOCK</span>
+                       <input type="text" id="Stock" class="form-control TC"  onkeyup="DeHasta('Stock','BGraba');">
+                   </div>
+             </div>
+              <div class="col-xs-12">
+                  <div class="form-group input-group TC">
                       <label for="CStock" id="LCStock" onkeyup="DeHasta('CStock','BGraba');" class="btn" onclick="document.getElementById('LCStock').classList.toggle('btn-successs');">Control de Stock
                           <input type="checkbox" id="CStock" name="CStock" class=" "></label>
                       <label for="Visible" id="Visibless"  class="btn"  >Visible
                           <input type="checkbox" id="Visible" name="Visible" class=" "></label>
                   </div>
               </div>
-                    <div class="col-xs-6">
-                    <div class="form-group input-group">
-                      <span class="input-group-addon">STOCK</span>
-                      <input type="text" id="Stock" class="form-control TC"  onkeyup="DeHasta('Stock','BGraba');">
-                  </div>
-                    </div></div>
+
+
+
+             </div>
               <div class="modal-footer">
-                   <div style="height: 50px;">
                     <div class="col-xs-5 Y"> <a class="btn btn-success btn-block" onclick="BGrabaJS()"> Grabar </a></div>
-                    <div class="col-xs-4 Y"> <a class="btn btn-warning btn-block" onclick="LimpiaRes()" id="BSalir">Nuevo/Salir </a> </div>
+                    <div class="col-xs-4 Y"> <a class="btn btn-warning btn-block" data-dismiss="modal" aria-hidden="true"  id="BSalir">Salir </a> </div>
                     <div class="col-xs-3 Y"> <a class="btn btn-danger btn-block" onclick="BorraRes()" > Borrar </a> </div>
-                </div>
               </div>
            </div>
 
 
 
        </div>
-       <div class="modal fade" id="HVer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index: 300">
 
        </div>
-       </div>
+
+</div>
+
+<div class="modal fade" id="HVer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 
 </div>
         <!-- ******************************************************************************************** -->
@@ -286,8 +279,11 @@ function pulsar(e) {
   function BGrabaJS() {
       var ID = document.getElementById('ID').innerHTML;
       var idMarca = document.getElementById('LstMarca').value;
+      if(idMarca <0){alert("Falta Marca del producto"); document.getElementById('LstMarca').focus(); return;}
       var idRepu = document.getElementById('LstRepuesto').value;
+      if(idRepu <0){alert("Falta descripcion del Repuesto"); document.getElementById('LstRepuesto').focus(); return;}
       var idEquipo = document.getElementById('LstEquipos').value;
+      if(idEquipo <0){alert("Falta Modelo"); document.getElementById('idEquipo').focus(); return;}
       var idProvee = document.getElementById('LstProvee').value;
       var idColor = parseInt(document.getElementById('LstColor').value) ;
       if(idColor <1 ){idColor=1;}
@@ -297,6 +293,7 @@ function pulsar(e) {
       var Precio3 = document.getElementById('Precio3').value;
       var Stock = document.getElementById('Stock').value;
       var CStock = document.getElementById('CStock').checked;
+      var Visible = document.getElementById('Visible').checked;
 
       var d;
       d = {
@@ -312,33 +309,21 @@ function pulsar(e) {
           P3: Precio3,
           Stock: Stock,
           Color: idColor,
-          CStock: CStock
+          CStock: CStock,
+          Visible:Visible
       };
       console.log(d);
       if (idRepu > 0) {
           $.post('cgi/LDComplementa.php', d, function (res) {
               console.log(res);
               alert("Se grabo");
-              LimpiaRes();
+             $("#HVer2").show('hide');
           });
       } else {
           alert("Falta Repuesto");
       }
   }
-  function LimpiaRes(){
-      document.getElementById('ID').innerHTML="0";
-      document.getElementById('LstMarca').value="";
-      document.getElementById('LstRepuesto').value="";
-      document.getElementById('LstEquipos').value="";
-      document.getElementById('LstProvee').value="";
-      document.getElementById('LstColor').value="1";
-      document.getElementById('Costo').value="";
-      document.getElementById('Precio1').value="";
-      document.getElementById('Precio2').value="";
-      document.getElementById('Precio3').value="";
-      document.getElementById('Stock').value="";
-      document.getElementById('CStock').checked="false";
-  }
+
   function Res(id) {
       var d = {ID:id,T:91};
       $.post('cgi/LDComplementa.php', d, function (res) {
@@ -368,10 +353,17 @@ function pulsar(e) {
       $.post('cgi/version.php?V=8', d, function (res) {
           if (res > verRes) {
               verRes = res;
-              $("#LRes2").load("cgi/LDComplementa.php?T=90", function (res) { });
+              $("#LRes3").load("cgi/LDComplementa.php?T=1001", function (res) { });
           }// Fin IF
       });//
   }
+  function LstRepu() {
+      var id= parseInt(document.getElementById('LstEquipos').value);
+     if(id >0){
+       $("#LRes3").load("cgi/LDComplementa.php?T=1002&ID="+ id, function (res) { });
+      }
+  }
+
   function refrescar(){
       CargaRes();
       Mensajes();
@@ -525,7 +517,25 @@ function pulsar(e) {
 </script>
 <script>
    function Novo() {
+       var x=document.getElementById('LstEquipos').value;
+      if(x>0){
+       document.getElementById('ID').innerHTML="0";
+       document.getElementById('LstRepuesto').value="";
+       document.getElementById('LstProvee').value="";
+       document.getElementById('LstColor').value="1";
+       document.getElementById('Costo').value="";
+       document.getElementById('Precio1').value="";
+       document.getElementById('Precio2').value="";
+       document.getElementById('Precio3').value="";
+       document.getElementById('Stock').value="";
+       REC4();
+       REC5();
+       REC2();
        $("#HVer2").modal("show");
+      }else{
+          alert("Falta Modelo de equipo y /o Marca");
+          document.getElementById('LstEquipos').focus();
+      }
    }
  </script>
 
