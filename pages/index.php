@@ -309,7 +309,7 @@ $( "#btnGrabar" ).click(function( e ) {
          console.log(d);
         $.post("cgi/Grabar.php", d, function(result){  
             IDGraba = result; 
-            //console.log("ID ->" + IDGraba);
+            console.log("ID ->" + IDGraba);
              try{
                  var X= document.getElementById("Ttmp");
                 for(var i = 1; i < Hay ; i++) {

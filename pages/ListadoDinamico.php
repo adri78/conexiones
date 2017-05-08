@@ -26,6 +26,21 @@ if($modo=='C'){ //Color
     }
 ?>
 
+<script>
+
+ function cmbReload () {
+    var m= <?php echo $modo ; ?>
+
+    if(m=='P'){REC4();}
+    if(m=='C'){REC5();}
+    if(m=='M'){REC3();}
+    if(m=='T'){REC2();}
+    if(m=='O'){REC1();}
+ }
+</script>
+
+
+
  <!-- Modal-->
 
  <style>
@@ -41,7 +56,7 @@ if($modo=='C'){ //Color
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="cmbReload()">&times;</button>
                                 <h4 class="modal-title" id="myModalLabel">ABM de <?php echo $Actuliza; ?></h4>
                                 <label for="" id="ID" class="NV">0</label>
                             </div>
@@ -71,7 +86,7 @@ if($modo=='C'){ //Color
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">SALIR</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cmbReload()">SALIR</button>
                             </div>
                         </div>
                         <!-- /.modal-content -->

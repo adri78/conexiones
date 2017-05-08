@@ -25,10 +25,14 @@
     <link href="../dist/css/sb-admin-2.css?2" rel="stylesheet">
 
     <style>
-        #LRes td:nth-child(1) { text-align: center; width:30px;}
-        #LRes td:nth-child(6) { text-align: right;}
+        #LRes td:nth-child(1) { text-align: center;}
+        #LRes td:nth-child(3) { text-align: center;}
         #LRes td:nth-child(4) { text-align: right;}
         #LRes td:nth-child(5) { text-align: right;}
+        #LRes td:nth-child(6) { text-align: right;}
+        #LRes td:nth-child(7) { text-align: right;}
+        #LRes td:nth-child(8) { text-align: center;}
+
         #LRes tbody tr:hover{background: aquamarine;}
         input:focus{background: #73dba8;}
         .B{ padding: 0px;}
@@ -71,12 +75,12 @@ function pulsar(e) {
     include 'menu.php';
 ?>
     <div class="row">
-      <label class="" id="ID">0</label>
+      <label class="" id="ID" style="color: #c5c5c4;">0</label>
 
         <div class="col-xs-3" style="margin-left: 10px;">
             <div class="form-group input-group">
                 <span class="input-group-addon B"><buton class="btn btn-danger" onclick="BtnMarca()">Marca</buton></span>
-                <select name="LstMarca"  class="form-control Z" id="LstMarca" onfocus='REC1();' onblur="LoadEquipos();">
+                <select name="LstMarca"  class="form-control Z" id="LstMarca" onfocus='REC1();'>
                 </select>
             </div>
         </div>
@@ -84,7 +88,7 @@ function pulsar(e) {
             <div class="form-group input-group" style="z-index: 100;" >
                 <span class="input-group-addon B"><buton class="btn btn-danger" onclick="BtnEquipo()">Model</buton></span>
                 <section id="intro" >
-                    <select id="LstEquipos" class="form-control" id="LstEquipos" onfocus='REC3("LstEquipos")' onchange="LstRepu" >
+                    <select id="LstEquipos" class="form-control" onchange="LstEquipos"  >
                     </select>
                 </section>
             </div>
@@ -96,39 +100,18 @@ function pulsar(e) {
         <div class="col-xs-12" >
             <div id="ListaDos" >
                 <table width="100%" class="table  table-bordered sortable" id="LRes">
-                <thead class="Titulo"><tr><th width="40px"><buton class="btn btn-danger X" onclick="BtnRepuesto()">Repuestos</buton></th><th>V</th>
+                <thead class="Titulo"><tr><th width="200px"><buton class="btn btn-danger X" onclick="BtnRepuesto()">Repuestos</buton></th><th width="40px">Visible</th>
                      <th><buton class="btn btn-info X" onclick="BtnColor()">Color</buton></th><th class="TD">Costo</th><th class="TD">Precio1</th>
-                         <th class="TD">Precio2</th><th class="TD">Precio3</th><th class="TD">Stock</th><th class="TD"><buton class="btn btn-danger X" onclick="BtnProvee()">Proveedor</buton></th>
-                   </tr>
-                </thead><tbody id="LRes3">
-                <tr onclick="verR(id)">
-                    <td>stock</td>
-                    <td>Marca - Tipo</td>
-                    <td>Equipo</td>
-                    <td>P1</td>
-                    <td>p2</td>
-                    <td>P3</td>
-                    <td>P1</td>
-                    <td>p2</td>
-                    <td>P3</td>
-                 </tr>
-
-                </tbody></table>
+                         <th class="TD">Precio2</th><th class="TD">Precio3</th><th class="TC">Stock</th><th><buton class="btn btn-danger X" onclick="BtnProvee()">Proveedor</buton></th>
+                   </tr></thead>
+                 <tbody id="LRes3"></tbody>
+                </table>
         </div> <!-- Fin ListaArt -->
         </div>
         <hr>
         <hr>
-        <!-- *************************************************************************************************** -->
-        <!-- *************************************************************************************************** -->
-        <!-- *************************************************************************************************** -->
 
 
-    <!-- fin row -->
-
-<!-- ********************************************************************************************  -->
-
-        <!--
-          <div class="modal fade" id="HVer2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
    <div class="modal fade" id="HVer2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
        <div class="modal-dialog">
            <div class="modal-content" style="background: aquamarine;">
@@ -155,25 +138,25 @@ function pulsar(e) {
                     <div class="col-xs-6">
                   <div class="form-group input-group">
                       <span class="input-group-addon">Costo</span>
-                      <input type="text" id="Costo" class="form-control TD" onkeyup="DeHasta('Costo','Precio1');">
+                      <input type="text" id="Costo" class="form-control TD" onkeyup="DeHasta('Costo','Precio1');"  autocomplete="off">
                   </div>
               </div>
                     <div class="col-xs-6">
                   <div class="form-group input-group">
                       <span class="input-group-addon">Precio1</span>
-                      <input type="text" id="Precio1" class="form-control TD" onkeyup="DeHasta('Precio1','Precio2');">
+                      <input type="text" id="Precio1" class="form-control TD" onkeyup="DeHasta('Precio1','Precio2');" autocomplete="off">
                   </div>
               </div>
                     <div class="col-xs-6">
                   <div class="form-group input-group">
                       <span class="input-group-addon">Precio2</span>
-                      <input type="text" id="Precio2" class="form-control TD" onkeyup="DeHasta('Precio2','Precio3');">
+                      <input type="text" id="Precio2" class="form-control TD" onkeyup="DeHasta('Precio2','Precio3');" autocomplete="off">
                   </div>
               </div>
               <div class="col-xs-6">
                   <div class="form-group input-group">
                       <span class="input-group-addon">Precio3</span>
-                      <input type="text" id="Precio3" class="form-control TD"  onkeyup="DeHasta('Precio3','Stock');">
+                      <input type="text" id="Precio3" class="form-control TD"  onkeyup="DeHasta('Precio3','Stock');" autocomplete="off">
                   </div>
               </div>
              <div class="col-xs-6">
@@ -186,7 +169,7 @@ function pulsar(e) {
              <div class="col-xs-6">
                    <div class="form-group input-group">
                        <span class="input-group-addon">STOCK</span>
-                       <input type="text" id="Stock" class="form-control TC"  onkeyup="DeHasta('Stock','BGraba');">
+                       <input type="text" id="Stock" class="form-control TC"  onkeyup="DeHasta('Stock','BGraba');" autocomplete="off">
                    </div>
              </div>
               <div class="col-xs-12">
@@ -221,9 +204,6 @@ function pulsar(e) {
 </div>
         <!-- ******************************************************************************************** -->
 
-
-
-
 <?php include 'cgi/Pedir.php'; ?>
 
     <!-- /#wrapper -->
@@ -243,8 +223,15 @@ function pulsar(e) {
     verRes =0;
 
 
-</script>
-<script>
+    document.querySelector("#LstMarca").addEventListener("change", function(){
+        LoadEquipos();
+        document.getElementById('LRes3').innerHTML="<h3>      Selecione Modelo </h3>";
+    });
+
+    document.querySelector("#LstEquipos").addEventListener("change", function(){
+        LstRepu();
+    });
+
   function BtnMarca() {
       $("#HVer").load("ListadoDinamico.php?T=M",function(a){
           $("#HVer").modal("show");
@@ -266,14 +253,23 @@ function pulsar(e) {
         });
   }
   function BtnEquipo() {
-      var M=document.getElementById('LstMarca').value;
-      $("#HVer").load("ListadoDinamico.php?T=O&D="+M,function(a){
-          $("#HVer").modal("show");
-      });
+      var M= parseInt( document.getElementById('LstMarca').value);
+      if(isNaN(M)){alert("Selecione la marca primero"); document.getElementById('LstMarca').focus();
+      }else{
+          $("#HVer").load("ListadoDinamico.php?T=O&D="+M,function(a){
+              $("#HVer").modal("show");
+          });
+      }
   }
   function LoadEquipos() {
       var M=document.getElementById('LstMarca').value;
-      $("#LstEquipos").load("cgi/LDComplementa.php?T=210&D="+M,function(a){ });
+      $("#LstEquipos").load("cgi/LDComplementa.php?T=210&D="+M,function(a){
+          var x = document.getElementById("LstEquipos");
+          var option = document.createElement("option");
+          option.text = "-*-";
+          x.add(option,x[0]);
+          x.selectedIndex = "0";
+      });
       //$('#intro select').zelect({ placeholder:' Modelo ' });
   }
   function BGrabaJS() {
@@ -312,12 +308,10 @@ function pulsar(e) {
           CStock: CStock,
           Visible:Visible
       };
-      console.log(d);
+      //console.log(d);
       if (idRepu > 0) {
           $.post('cgi/LDComplementa.php', d, function (res) {
-              console.log(res);
-              alert("Se grabo");
-             $("#HVer2").show('hide');
+              $("#HVer2").modal('hide'); LstRepu();
           });
       } else {
           alert("Falta Repuesto");
@@ -325,43 +319,47 @@ function pulsar(e) {
   }
 
   function Res(id) {
-      var d = {ID:id,T:91};
+      REC4();
+      REC5();
+      REC2();
+      var d = {ID:id,T:1000};
       $.post('cgi/LDComplementa.php', d, function (res) {
-         // console.log(res);
+      //  console.log(res);
           var Datos = res.split("|");
           document.getElementById('ID').innerHTML=Datos[0];
-          $("#LstMarca").load("cgi/LDComplementa.php?T=202",function(){document.getElementById('LstMarca').value=Datos[2];});
-          $("#LstEquipos").load("cgi/LDComplementa.php?T=210&D="+Datos[2], function(){document.getElementById('LstEquipos').value=Datos[1];});
-          $("#LstRepuesto").load("cgi/LDComplementa.php?T=203",function(){document.getElementById('LstRepuesto').value=Datos[4];});
-          $("#LstProvee").load("cgi/LDComplementa.php?T=201",function(){document.getElementById('LstProvee').value=Datos[3];});
-
+          document.getElementById('LstProvee').value=Datos[3];
+          document.getElementById('LstRepuesto').value=Datos[4];
           document.getElementById('Costo').value=Datos[5];
           document.getElementById('Precio1').value=Datos[6];
           document.getElementById('Precio2').value=Datos[7];
           document.getElementById('Precio3').value=Datos[8];
           document.getElementById('Stock').value=Datos[9];
           document.getElementById('CStock').checked=Datos[10];
-
-          $("#LstColor").load("cgi/LDComplementa.php?T=204",function(){document.getElementById('LstColor').value=document.getElementById('LstColor').value = parseInt( Datos[11]) ;});
-
+          document.getElementById('LstColor').value = parseInt( Datos[11]);
+          document.getElementById('Visible').checked=Datos[12];
+          $("#HVer2").modal("show");
           $("#Costo").focus();
       });
 
   }
   function CargaRes() {
-      var d={};
+     /* var d={};
       $.post('cgi/version.php?V=8', d, function (res) {
           if (res > verRes) {
               verRes = res;
               $("#LRes3").load("cgi/LDComplementa.php?T=1001", function (res) { });
           }// Fin IF
-      });//
+      });// */
   }
   function LstRepu() {
       var id= parseInt(document.getElementById('LstEquipos').value);
+      console.log(id +"Paso  or aca" );
      if(id >0){
        $("#LRes3").load("cgi/LDComplementa.php?T=1002&ID="+ id, function (res) { });
       }
+     if(isNaN(id)){
+         document.getElementById('LRes3').innerHTML="<h2> Seleccioné un Modelo de Equipo </h2>";
+     }
   }
 
   function refrescar(){
@@ -375,14 +373,12 @@ function pulsar(e) {
           if(confirm("Esta por borrar un Repuesto, Seguro?")){
               var d = {ID:ID,T:92};
               $.post('cgi/LDComplementa.php', d, function (res) {
-                  console.log(res);
-                  LimpiaRes();
+                  $("#HVer2").modal("hide");
+                  LstRepu();
               });
           }
       }
   }
-
-
 
   $(document).ready(function() {
       CargaRes();
@@ -493,17 +489,17 @@ function pulsar(e) {
 <script>
     function REC1(){
         var tmp =document.getElementById('LstMarca').value;
-        $("#LstMarca").load("cgi/LDComplementa.php?T=202",function(){document.getElementById('LstMarca').value=tmp});
+        $("#LstMarca").load("cgi/LDComplementa.php?T=202",function(){ document.getElementById('LstMarca').value=tmp});
     }
     function REC2(){
         var tmp =document.getElementById('LstRepuesto').value;
         $("#LstRepuesto").load("cgi/LDComplementa.php?T=203",function(){document.getElementById('LstRepuesto').value=tmp;});
     }
 
-    function REC3(lst){
-        var tmp =document.getElementById(lst).value;
-        $("#"+lst).load("cgi/LDComplementa.php?T=210&D="+document.getElementById("LstMarca").value, function(){
-            document.getElementById(lst).value= tmp;
+    function REC3(){
+        //var tmp =document.getElementById(LstEquipos).value;
+        $("#LstEquipos").load("cgi/LDComplementa.php?T=210&D="+document.getElementById("LstMarca").value, function(){
+           // document.getElementById(lst).value= tmp;
         });
     }
     function REC4() {
@@ -514,8 +510,7 @@ function pulsar(e) {
         var tmp=document.getElementById('LstColor').value;
         $("#LstColor").load("cgi/LDComplementa.php?T=204",function(){document.getElementById('LstColor').value=tmp;});
     }
-</script>
-<script>
+
    function Novo() {
        var x=document.getElementById('LstEquipos').value;
       if(x>0){
@@ -531,7 +526,7 @@ function pulsar(e) {
        REC4();
        REC5();
        REC2();
-       $("#HVer2").modal("show");
+          $("#HVer2").modal("show");
       }else{
           alert("Falta Modelo de equipo y /o Marca");
           document.getElementById('LstEquipos').focus();

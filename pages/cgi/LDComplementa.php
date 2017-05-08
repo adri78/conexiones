@@ -45,7 +45,7 @@ if(isset($_POST["CStock"])){ $CStock= ($_POST["CStock"]=='true')? 1:0; }
 
 
 if ($modo==1000) { //Lee Repuesto
-    $sql = "SELECT `id_R`, `EquipoId`, `MarcaID`, `ProveeID`, `TipoId`, `Costo`, `P1`, `P2`, `P3`, `Stock`, `CStock`,`Color1`,`Visible` FROM `t_repuestos` ";
+    $sql = "SELECT `id_R`,`EquipoId`, `MarcaID`, `ProveeID`, `TipoId`, `Costo`, `P1`, `P2`, `P3`, `Stock`, `CStock`,`Color1`,`Visible` FROM `t_repuestos` ";
     $sql = $sql . " WHERE `id_R`='" . $ID . "';";
     $segmento = mysqli_query($conexion, $sql);
     while ($row = mysqli_fetch_array($segmento)) {
@@ -53,25 +53,34 @@ if ($modo==1000) { //Lee Repuesto
     }
 }
 
-if ($modo==1001) { //Lee Repuesto
-    $sql="SELECT `id_R`, `EquipoId`, `MarcaID`,(SELECT `Proveedor` FROM `t_proveedor` WHERE `idProvee`=`ProveeID`) as Provee ,(SELECT `Tipo` FROM `t_tipo` WHERE `idTipo`=`TipoId`) as re , `Costo`, `P1`, `P2`, `P3`, `Stock`, `CStock`,( SELECT `color` FROM `t_color` WHERE `idco`=`Color1` ) as colores,`Visible` FROM `t_repuestos` ";
+if ($modo==1001) { //Lee Repuesto general
+    $sql="SELECT `id_R`,(SELECT `Equipo` FROM `t_equi` WHERE `id_equi`=`EquipoId`) as Equipo, `EquipoId`, `MarcaID`,(SELECT `Proveedor` FROM `t_proveedor` WHERE `idProvee`=`ProveeID`) as Provee ,(SELECT `Tipo` FROM `t_tipo` WHERE `idTipo`=`TipoId`) as re , `Costo`, `P1`, `P2`, `P3`, `Stock`, `CStock`,( SELECT `color` FROM `t_color` WHERE `idco`=`Color1` ) as colores,`Visible` FROM `t_repuestos` ";
 
     $segmento = mysqli_query($conexion,$sql);
     while ($row = mysqli_fetch_array($segmento)) {
         $vi= ($row['Visible']==1)? "Visible":"Oculto";
-       echo "<tr onclick='res(".$row['id_R'].")'><td>".$row['re']."</td><td>".$vi."</td><td>".$row['colores']."</td><td>".$row['Costo']."</td><td>";
-       echo  $row['P1']."</td><td>".$row['P2']."</td><td>".$row['P3']."</td><td>".$row['Stock']."</td><td>".$row['Provee']."</td></tr>";
+        $p1= $formatter->formatCurrency( $row["P1"], 'USD');
+        $p2= $formatter->formatCurrency( $row["P2"], 'USD');
+        $p3= $formatter->formatCurrency( $row["P3"], 'USD');
+        $c1= $formatter->formatCurrency( $row["Costo"], 'USD');
+       echo "<tr onclick='Res(".$row['id_R'].")'><td>".$row['Equipo']."-".$row['re']."</td><td>".$vi."</td><td>".$row['colores']."</td><td>".$c1."</td><td>";
+       echo  $p1."</td><td>".$p2."</td><td>".$p3."</td><td>".$row['Stock']."</td><td>".$row['Provee']."</td></tr>";
     }
 }
 
-if ($modo==1002) { //Lee Repuesto
+if ($modo==1002) { //Lee Repuesto x modelo en tabla
     $sql="SELECT `id_R`, `EquipoId`, `MarcaID`,(SELECT `Proveedor` FROM `t_proveedor` WHERE `idProvee`=`ProveeID`) as Provee ,(SELECT `Tipo` FROM `t_tipo` WHERE `idTipo`=`TipoId`) as re , `Costo`, `P1`, `P2`, `P3`, `Stock`, `CStock`,( SELECT `color` FROM `t_color` WHERE `idco`=`Color1` ) as colores,`Visible` FROM `t_repuestos` ";
     $sql = $sql . " WHERE `id_R`='" . $ID . "';";
     $segmento = mysqli_query($conexion,$sql);
     while ($row = mysqli_fetch_array($segmento)) {
         $vi= ($row['Visible']==1)? "Visible":"Oculto";
-        echo "<tr onclick='res(".$row['id_R'].")'><td>".$row['re']."</td><td>".$vi."</td><td>".$row['colores']."</td><td>".$row['Costo']."</td><td>";
-        echo  $row['P1']."</td><td>".$row['P2']."</td><td>".$row['P3']."</td><td>".$row['Stock']."</td><td>".$row['Provee']."</td></tr>";
+        //$formatter->formatCurrency( $_POST["P3"], 'USD')
+        $p1= $formatter->formatCurrency( $row["P1"], 'USD');
+        $p2= $formatter->formatCurrency( $row["P2"], 'USD');
+        $p3= $formatter->formatCurrency( $row["P3"], 'USD');
+        $c1= $formatter->formatCurrency( $row["Costo"], 'USD');
+        echo "<tr onclick='Res(".$row['id_R'].")'><td>".$row['re']."</td><td>".$vi."</td><td>".$row['colores']."</td><td>".$c1."</td><td>";
+        echo  $p1."</td><td>".$p2."</td><td>".$p3."</td><td>".$row['Stock']."</td><td>".$row['Provee']."</td></tr>";
     }
 }
 /* ***************************  Manejo de Respuestos   ************************************* */
@@ -82,7 +91,7 @@ if ($modo==70) { //Listado de reapaciones
         $sql=$sql."(`EquipoId`=".$marca.") and(`TipoId`=`idTipo`)";
         $segmento = mysqli_query($conexion,$sql);
         while ($row = mysqli_fetch_array($segmento)) {
-            echo "<tr onclick='Res2(".$row['id_R'].")'><td>".$row['Stock']."</td><td>".$row['Tipo']."</td><td>".$row['P1']."</td></tr>";
+            echo "<tr onclick='Res2(".$row['id_R'].")'><td>".$row['Stock']."</td><td>".$row['Tipo']."</td><td>".$row['P1']."</td><td>".$row['P2']."</td><td>".$row['P3']."</td></tr>";
         }
        // print $sql;
 

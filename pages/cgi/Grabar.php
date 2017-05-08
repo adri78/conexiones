@@ -10,7 +10,9 @@ $HOY = date("Y-m-d H:i:s");
          }
 
   $modo="";
-$Obs="";
+  $Obs="";
+  $UNUM=1;
+
 if(isset($_POST["M"])){ $M=$_POST["M"];}
 if(isset($_POST["Local"])){ $Local=$_POST["Local"]; }
 if(isset($_POST["Cliente"])){ $Cliente=$_POST["Cliente"]; }
@@ -27,7 +29,7 @@ if(isset($_POST["Obs"])){ $Obs=$_POST["Obs"];}
 if(isset($_POST["Serial"])){ $Serial=$_POST["Serial"];}
 if(isset($_POST["Stock"])){ $Stock=$_POST["Stock"];}
 //{M:1,Local:Local,Cliente:Cliente,DNI:DNI,Email:Email,Control:Control,Total:Total };
-      
+
  
 if ($M==1) { // Graba la venta
       // Actuliza Num
@@ -35,9 +37,13 @@ if ($M==1) { // Graba la venta
     $segmento = mysqli_query($conexion,$sql);
     while ($row = mysqli_fetch_array($segmento)){ $UNUM=$row['U'] ;}
 
-    $sql= "INSERT INTO `t_venta`(  `Fecha`, `Cliente`, `DNI`, `Email`, `Total`, `Control`, `Local`,`Num`) VALUES (";
-    $sql= $sql . "CURRENT_TIMESTAMP,'".$Cliente."','".$DNI ."','".$Email."','".$Total."','".$Control."','".$Local."','". $UNUM."');";
-   
+    if($UNUM < 1){
+        $UNUM=1;
+    }
+
+    $sql= "INSERT INTO `t_venta`( `Fecha`, `Cliente`, `DNI`, `Email`, `Total`, `Control`, `Local`,`Num`,`estado`) VALUES (";
+    $sql= $sql . "CURRENT_TIMESTAMP,'".$Cliente."','".$DNI ."','".$Email."','".$Total."','".$Control."','".$Local."','". $UNUM."','1');";
+   // echo $sql;
     $segmento = mysqli_query($conexion,$sql);  
     //$sql="select LAST_INSERT_ID;";
 
@@ -176,7 +182,7 @@ if ($M==12){// Leer Nota del Pie
     $sql="SELECT `Pie` FROM `varios` WHERE `idVarios`='1';";
     $segmento = mysqli_query($conexion,$sql);
     $row = mysqli_fetch_array($segmento);
-    if(isset($row['Pie'])){ $UNUM=$row['Pie'];}else {$UNUM="44444";}
+    if(isset($row['Pie'])){ $UNUM=$row['Pie'];}else {$UNUM="*****";}
     $segmento = mysqli_query($conexion,$sql);
     print $UNUM;
     mysqli_close($conexion);
@@ -189,3 +195,27 @@ if ($M==13){// Graba Nueva Nota Pie;
 
     mysqli_close($conexion);
 }// Fin Graba Nueva Nota Pie;
+
+if ($M==1000){// Graba Nueva Nota Pie;
+    $sql="UPDATE `t_venta` SET `estado`='2' WHERE `IdV`='".$ID."' ;"; // Anula factura.
+    $segmento = mysqli_query($conexion,$sql);
+        if($Local=="1") {$ajustar="`S1`=(`S1`+1)";}
+        if($Local=="2") {$ajustar="`S2`=(`S2`+1)";}
+        if($Local=="3") {$ajustar="`S3`=(`S3`+1)";}
+
+    $segmento = mysqli_query($conexion,"SELECT `ArtID` FROM `t_detalle` WHERE `Vid`='".$ID."'");
+    while ($row = mysqli_fetch_array($segmento)){
+           echo "**".$row[0]."/";
+            $sql2="UPDATE `t_art` SET ".$ajustar." WHERE `idart`='".$row[0]."'; " ;
+           echo $sql2;
+            $segmento2 = mysqli_query($conexion,$sql2);
+        }
+
+  /*  $sql="UPDATE `t_art` SET ".$ajustar." WHERE `idart`=(SELECT `ArtID` FROM `t_detalle` WHERE `Vid`='".$ID."')";
+        print $sql;
+    $segmento = mysqli_query($conexion,$sql);// buscar x num y devolver x id de articulo +1 stock x local
+*/
+     print "Factura Anulada";
+
+    mysqli_close($conexion);
+}//

@@ -168,7 +168,6 @@ function pulsar(e) {
                         <div class="form-group input-group">
                             <span class="input-group-addon B"><buton class="btn btn-info" onclick="BtnColor()">Color.</buton></span>
                             <select name="LstColor"  class="form-control Z" onkeyup="DeHasta('LstColor','Costo');"  id="LstColor" onfocus='REC5();'>
-
                             </select>
                         </div>
                     </div>
@@ -176,25 +175,25 @@ function pulsar(e) {
                     <div class="col-xs-6">
                         <div class="form-group input-group">
                             <span class="input-group-addon">Costo</span>
-                            <input type="text" id="Costo" class="form-control TD" onkeyup="DeHasta('Costo','Precio1');">
+                            <input type="text" id="Costo" class="form-control TD" onkeyup="DeHasta('Costo','Precio1');" autocomplete="off">
                         </div>
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group input-group">
                             <span class="input-group-addon">Precio1</span>
-                            <input type="text" id="Precio1" class="form-control TD" onkeyup="DeHasta('Precio1','Precio2');">
+                            <input type="text" id="Precio1" class="form-control TD" onkeyup="DeHasta('Precio1','Precio2');" autocomplete="off">
                         </div>
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group input-group">
                             <span class="input-group-addon">Precio2</span>
-                            <input type="text" id="Precio2" class="form-control TD" onkeyup="DeHasta('Precio2','Precio3');">
+                            <input type="text" id="Precio2" class="form-control TD" onkeyup="DeHasta('Precio2','Precio3');" autocomplete="off">
                         </div>
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group input-group">
                             <span class="input-group-addon">Precio3</span>
-                            <input type="text" id="Precio3" class="form-control TD"  onkeyup="DeHasta('Precio3','Stock');">
+                            <input type="text" id="Precio3" class="form-control TD"  onkeyup="DeHasta('Precio3','Stock');" autocomplete="off">
                         </div>
                     </div>
                     <div class="col-xs-12">
@@ -216,7 +215,7 @@ function pulsar(e) {
                     <div class="col-xs-6">
                         <div class="form-group input-group">
                             <span class="input-group-addon">STOCK</span>
-                            <input type="text" id="Stock" class="form-control TC"  onkeyup="DeHasta('Stock','BGraba');">
+                            <input type="text" id="Stock" class="form-control TC"  onkeyup="DeHasta('Stock','BGraba');" autocomplete="off">
                         </div>
                     </div>
                 </div>

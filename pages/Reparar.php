@@ -321,7 +321,9 @@ $sql="SELECT `id_equi`,`Marca`,`Equipo` FROM `t_equi`,`t_marca` WHERE `MarcaID`=
          <thead class="Titulo">
          <tr><th style="width: 20px;"> Stock </th>
              <th>Respuesto</th>
-             <th style="width:21px;"> Valor </th>
+             <th style="width:21px;"> T1</th>
+             <th style="width:21px;"> T2</th>
+             <th style="width:21px;"> T3</th>
          </thead>
          <tbody id="LstRepus">
             <tr><td></td><td></td><td></td></tr>
@@ -635,7 +637,7 @@ $sql="SELECT `id_equi`,`Marca`,`Equipo` FROM `t_equi`,`t_marca` WHERE `MarcaID`=
     }
 
     function ML() {
-             document.getElementById('PreRes').classList.toggle("control-sidebar");
+            document.getElementById('PreRes').classList.toggle("control-sidebar");
             document.getElementById('PreRes').classList.toggle("NV");
     }
 </script>

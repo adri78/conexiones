@@ -72,8 +72,7 @@
                     <ul class="dropdown-menu dropdown-messages">
                         <li><a href="ReImprimir.php"> Re impresion Facturas</a></li>
                         <li><a href="informe1.php"> Listados e Informes</a></li>
-
-                        <li><a href="informe1.php"> Stock Total</a></li>
+                        <li><a href="NullFac.php"> Anular Factura</a></li>
                         <li><a href="informe1.php"> Stock Total</a></li>
                         <li><a href="informe1.php"> Stock Total</a></li>
                         <li><a href="informe1.php"> Stock Total</a></li>
@@ -86,6 +85,7 @@
                  echo '<li><a class="dropdown-toggle" data-toggle="dropdown" href="#" > Compras <i class="fa fa-caret-down"></i></a><ul class="dropdown-menu dropdown-messages">';
                  echo '<li><a href = "compras.php" > Telefonos </a></li> ';
                  echo '<li><a href="repuestos.php"> Repuestos</a></li>';
+                 echo '<li><a href="Tabla_Repuestos.php">Ficha Repuestos</a></li>';
                  echo '</ul></li>';
                } ?>
 

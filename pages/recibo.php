@@ -13,12 +13,9 @@ $Tabla="";
 
 $formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
  if($I==0){
-     $sql="SELECT `IdV`, `Fecha`, `Cliente`, `DNI`, `Email`, `Total`, `Control`, `Local`, `Num` FROM `t_venta` WHERE `Num`='".$N."' AND `Local`=".$Local.";";
-
+     $sql="SELECT `IdV`, `Fecha`, `Cliente`, `DNI`, `Email`, `Total`, `Control`, `Local`, `Num`,`estado` FROM `t_venta` WHERE `Num`='".$N."' AND `Local`=".$Local.";";
  }else{
-
-     $sql="SELECT `IdV`, `Fecha`, `Cliente`, `DNI`, `Email`, `Total`, `Control`, `Local`, `Num` FROM `t_venta` WHERE  `IdV`=".$I.";";
-
+     $sql="SELECT `IdV`, `Fecha`, `Cliente`, `DNI`, `Email`, `Total`, `Control`, `Local`, `Num`,`estado` FROM `t_venta` WHERE  `IdV`=".$I.";";
  }
      $segmento = mysqli_query($conexion,$sql);
     while ($row = mysqli_fetch_array($segmento)) {
@@ -30,6 +27,7 @@ $formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
         $Local=$row["Local"];
         $recibo=str_pad($row["Num"], 6, "0", STR_PAD_LEFT);
         $id=$row["IdV"];
+        $estado=$row["estado"];
     }
 
     $sql="SELECT `IdD`, `Codigo`, `Articulo` , `Precio`, `OBS`, `Serial` FROM `t_detalle`, `t_art` WHERE ((`ArtID`= `idart`) AND (`Vid`=".$id."));";
@@ -62,6 +60,7 @@ if($Local==2) {
 if($Local==3) {
     $Local = "Deposito";
     $Lugar="******";
+    $Tel=" ";
 }
  mysqli_close($conexion);
 ?>
@@ -93,7 +92,7 @@ if($Local==3) {
            -webkit-print-color-adjust: exact;
        }
        .FLOGO img {
-            position: absolute;
+           position: absolute;
            vertical-align: middle;
            width: 70%;
            maxi-width:70mm;
@@ -108,7 +107,16 @@ if($Local==3) {
         margin:0px;
         padding:0px;
     }
-
+    .Anulado{
+        margin-left: 3em;
+        margin-top: 0.5;
+        font-size: 5em;
+        -ms-transform: rotate(8deg); /* IE 9 */
+        -webkit-transform: rotate(8deg); /* Chrome, Safari, Opera */
+        transform: rotate(8deg);
+        position: absolute;
+        z-index: 200;
+    }
      thead tr{
          border:1px solid darkgray;
          background:#eae6e6;
@@ -163,7 +171,7 @@ if(isset($_GET["V"])){ echo "<body>"; }else{ echo '<body  onmouseover="window.cl
              <div class="col-xs-4"><p style="font-size:0.9em;font-weight: bold;" class="TC">  <?php echo $Lugar; ?> </p></div>
              <div class="col-xs-3"><p style="font-size:0.9em;font-weight: bold;" class="TC">  <?php echo $Tel; ?> </p></div>
              <div class="col-xs-5"><p style="font-size:0.9em;" class="TC"><span style="font-weight: bold; color:#5656e6;">WWW.CONEXIONESMOVILES.COM.AR</span></p></div>
-
+<?php if($estado==2){ echo "<h2 class='Anulado' > ANULADA </h2>";} ?>
              <table class="table" border="0" width="100%;" cellpadding="5" >
                  <thead>
                  <tr>
@@ -222,7 +230,7 @@ if(isset($_GET["V"])){ echo "<body>"; }else{ echo '<body  onmouseover="window.cl
               <div class="col-xs-4"><p style="font-size:0.9em;font-weight: bold;" class="TC">  <?php echo $Lugar; ?> </p></div>
               <div class="col-xs-3"><p style="font-size:0.9em;font-weight: bold;" class="TC">  <?php echo $Tel; ?> </p></div>
               <div class="col-xs-5"><p style="font-size:0.9em;" class="TC"><span style="font-weight: bold; color:#5656e6;">WWW.CONEXIONESMOVILES.COM.AR</span></p></div>
-
+<?php if($estado==2){ echo "<h2 class='Anulado' > ANULADA </h2>";} ?>
               <table class="table" border="0" width="100%;" cellpadding="5" >
                   <thead>
                   <tr>
