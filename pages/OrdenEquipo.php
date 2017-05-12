@@ -118,11 +118,11 @@ while ($row = mysqli_fetch_array($segmento)){
 		}
         .TJ{text-align: justify;}
         .ma {
-            float:right;z-index:-1;position: absolute;padding-top: 5%;left: 35%;
+            float:right;z-index:-1;position: absolute;padding-top: 5%;left: 1%;font-size: 1.5em;
         }
 
         .ma h1 {
-            transform: rotate(-65deg);-webkit-transform: rotate(-65deg); opacity: 0.3;font-size: 2.4em;
+            transform: rotate(-65deg);-webkit-transform: rotate(-65deg); opacity: 0.21;font-size: 2.4em;
         }
 		</style>
 	</head>

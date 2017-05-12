@@ -13,17 +13,16 @@ $Tabla="";
 $Total=0;
 $formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
 
-$sql="SELECT `idnc`, `cliid`, `uid`, `nnc`, `fecha`, `monto`, `nota` FROM `t_nc` WHERE `cliid`=".$I." ;";
+$sql="SELECT `idnc`, `cliid`, `opid`, `nnc`, `fecha`, `monto`, `estado`, `Nota`, `Local` FROM `t_nc` WHERE `cliid`=".$I." ;";
 
 $formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
 // print $sql;
 $segmento = mysqli_query($conexion,$sql);
 while ($row = mysqli_fetch_array($segmento)) {
     $Total=$Total+$row["monto"];
-
     $Monto=$formatter->formatCurrency( $row["monto"], 'USD'); //, PHP_EOL;
     $fecha= substr ($row["fecha"],0,10) ;
-    $Tabla =$Tabla .'<tr><th>'.str_pad($row["nnc"], 6, "0", STR_PAD_LEFT).'</th><th>'.$fecha.'</th><th class="TD">'.$Monto.'</th><th>'.$row["nota"].'</th></tr>';
+    $Tabla =$Tabla .'<tr><th>'.str_pad($row["nnc"], 6, "0", STR_PAD_LEFT).'</th><th>'.$fecha.'</th><th class="TD">'.$Monto.'</th><th>'.$row["Nota"].'</th></tr>';
 
 }
 

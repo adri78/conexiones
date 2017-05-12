@@ -148,8 +148,13 @@ if ($M==9){// Levanta info de garantia
     mysqli_close($conexion);
 }
 if ($M==10){// Grabar clientes NC.
-    $sql="INSERT INTO `t_cliente` ( `dni`, `tel`, `email`, `Cliente`, `Estado`, `Local`) VALUES ('";
-    $sql= $sql.$ID."','".$Fecha."','".$Precio."','".$Serial ."',1,'".$Total."');";
+
+    //M:10,Num:dni,Serial:tel,ID:id,Precio:estimado,Total:Local,Cliente:cliente,Obs:nota,Email:email,Local:Local};
+     if($ID<1){
+         $sql="INSERT INTO `t_cliente`(`dni`, `tel`, `email`, `Cliente`, `Estado`, `Local`, `Nota`, `Cuenta`, `OpLiquida`, `FechLiqui`) VALUES ('";
+         $sql= $sql.$Num."','".$Serial."','".$Email."','".$Cliente ."','1','".$Local."','".$Obs."',0,'0','".$HOY."');";
+        // echo $sql;
+     }
 
     $segmento = mysqli_query($conexion,$sql);
     $segmento = mysqli_query($conexion,"SELECT LAST_INSERT_ID() ;");
@@ -161,14 +166,14 @@ if ($M==10){// Grabar clientes NC.
 }
 
 if ($M==11){// Grabar Pago clientes NC.  ID:idCli, Precio:monto, Serial:nota};
-    $sql="SELECT max(`nnc`)+1 as U FROM `t_nc`  ;";
+    $sql="SELECT max(`nnc`)+1 as U FROM `t_nc` WHERE `Local` ='".$Local."';";
     $segmento = mysqli_query($conexion,$sql);
     $row = mysqli_fetch_array($segmento);
     if(isset($row['U'])){ $UNUM=$row['U'];}else {$UNUM=1;}
 
-    $sql="INSERT INTO `t_nc`( `cliid`, `uid`, `nnc`, `fecha`, `monto`, `nota`) VALUES ('";
-    $sql= $sql.$ID."',1,'".$UNUM."',CURRENT_TIMESTAMP,'".$Precio."','".$Serial ."');";
-   // print $sql;
+    $sql="INSERT INTO `t_nc`( `cliid`, `opid`, `nnc`, `fecha`, `monto`, `Nota`,`Local`,`estado`) VALUES ('";
+    $sql= $sql.$ID."','".$Control."','".$UNUM."',CURRENT_TIMESTAMP,'".$Total."','".$Obs."','".$Local."','1');";
+  // print $sql. "// ";
     $segmento = mysqli_query($conexion,$sql);
     $segmento = mysqli_query($conexion,"SELECT LAST_INSERT_ID() ;");
     while ($row = mysqli_fetch_array($segmento)){ $ID=$row[0] ;}

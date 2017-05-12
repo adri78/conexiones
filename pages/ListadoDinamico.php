@@ -29,13 +29,13 @@ if($modo=='C'){ //Color
 <script>
 
  function cmbReload () {
-    var m= <?php echo $modo ; ?>
+    var m= <?php echo "'".$modo."'";  ?> ;
 
     if(m=='P'){REC4();}
     if(m=='C'){REC5();}
-    if(m=='M'){REC3();}
+    if(m=='M'){REC1();}
     if(m=='T'){REC2();}
-    if(m=='O'){REC1();}
+    if(m=='O'){REC3();}
  }
 </script>
 

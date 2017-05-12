@@ -115,6 +115,9 @@ $sql="SELECT `id_equi`,`Marca`,`Equipo` FROM `t_equi`,`t_marca` WHERE `MarcaID`=
         #intro .dropdown li.current {
             background-color: #e9ebe1;
         }
+        #LstRepus td:nth-child(3) { text-align: right;background: aqua;}
+        #LstRepus td:nth-child(4) { text-align: right;background: #f8ff89;}
+        #LstRepus td:nth-child(5) { text-align: right;background: #9bff9c;}
     </style>
     <!-- ****************************************************************************************************** -->
 <script>                
@@ -288,6 +291,7 @@ $sql="SELECT `id_equi`,`Marca`,`Equipo` FROM `t_equi`,`t_marca` WHERE `MarcaID`=
     .control-sidebar-bg{position:fixed;z-index:1000;bottom:0}
     .control-sidebar{
         top:100px;
+        width: 600px;
         right:10px;
         border-radius: 20px;
         padding: 5px;
@@ -296,8 +300,6 @@ $sql="SELECT `id_equi`,`Marca`,`Equipo` FROM `t_equi`,`t_marca` WHERE `MarcaID`=
         -o-transition:right .3s ease-in-out;
         transition:right .3s ease-in-out;
         background: rgba(76, 105, 110, 0.88);
-    }
-    .control-sidebar{
         position:absolute;
         padding-top:20px;
         z-index:1010}
@@ -307,9 +309,9 @@ $sql="SELECT `id_equi`,`Marca`,`Equipo` FROM `t_equi`,`t_marca` WHERE `MarcaID`=
 </style>
 <div class="NV" id="PreRes">
  <div style=" width: 100%;height: 500px; "  >
-     <div class="form-group input-group" style="z-index: 100;">
+     <div class="form-group input-group" style="z-index: 100;width: 98%;">
          <button class="btn btn-danger btn-circle btn-xs" style="float:right; " onclick="ML();" >X</button>
-         <h4 class="TC">Repuetos</h4>
+         <h4 class="TC" style="color: #0311b5;font-weight: bold;">Repuetos</h4>
          <section id="intro" style="color:black;">
              <select id="IDEqui" onchange="LRESPU(this.value)">
                  <?php echo $Equipos; ?>
@@ -319,14 +321,13 @@ $sql="SELECT `id_equi`,`Marca`,`Equipo` FROM `t_equi`,`t_marca` WHERE `MarcaID`=
      <hr>
      <table class="table table-bordered sortable" id="lstR" width="100%;">
          <thead class="Titulo">
-         <tr><th style="width: 20px;"> Stock </th>
+         <tr><th>S</th>
              <th>Respuesto</th>
-             <th style="width:21px;"> T1</th>
-             <th style="width:21px;"> T2</th>
-             <th style="width:21px;"> T3</th>
+             <th style="width:26px;"> T1</th>
+             <th style="width:26px;"> T2</th>
+             <th style="width:26px;"> T3</th>
          </thead>
          <tbody id="LstRepus">
-            <tr><td></td><td></td><td></td></tr>
          <tr>
      </table>
 </div>
@@ -358,12 +359,11 @@ $sql="SELECT `id_equi`,`Marca`,`Equipo` FROM `t_equi`,`t_marca` WHERE `MarcaID`=
         document.getElementById('Cliente').focus();
     }
   function PrintEquipo(x){
-
         if(x==0) {x= parseInt(document.getElementById('ID').innerHTML ); }
             var url = "OrdenEquipo.php?ID=" + x;
-            window.open(url, '', 'width=330,height=252,scrollbars=NO,statusbar=NO,left=500,top=250');
+        window.open(url, '', 'width=330,height=252,scrollbars=NO,statusbar=NO,left=500,top=250');
+  };
 
-    };
   function Restan() {
         var val1 = document.getElementById('Total').value;
         var val2 = document.getElementById('Sena').value;

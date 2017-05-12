@@ -353,7 +353,7 @@ function pulsar(e) {
   }
   function LstRepu() {
       var id= parseInt(document.getElementById('LstEquipos').value);
-      console.log(id +"Paso  or aca" );
+      console.log(id +"Paso por aca" );
      if(id >0){
        $("#LRes3").load("cgi/LDComplementa.php?T=1002&ID="+ id, function (res) { });
       }

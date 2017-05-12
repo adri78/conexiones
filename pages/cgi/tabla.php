@@ -221,16 +221,13 @@ if ($modo==7){// Listado de articulos vendidos Garantia  string substr (
 }// Finlistado grantia
 
 if ($modo==8){// tabla de cliente con señas
-
-  $sql="SELECT `idcli`, `dni`, `tel`, `email`, `Cliente`, `Estado`, `Local`, total, um  FROM `t_cliente` ,
- (Select cliid,sum(`monto`) as total,max(`fecha`) as um from `t_nc` 
- GROUP BY `cliid`) as T ";
-   // $sql="SELECT `idcli`, `dni`, `tel`, `email`, `Cliente`, `Estado`, `Local`, total,  um FROM `t_cliente` , (Select sum(`monto`) as total,max(`fecha`) as um  from `t_nc` where `idcli`=`cliid`) as T  ";
+    $sql="SELECT `idcli`, `dni`, `tel`, `email`, `Cliente`, `Estado`, `Local`, `Nota`, `Cuenta`, `OpLiquida`, `FechLiqui`,";
+    $sql=$sql."(Select sum(`monto`) FROM `t_nc` where `idcli`=`cliid` ) as total,( SELECT max(`fecha`) from `t_nc`  where `idcli`=`cliid` ) as um  FROM `t_cliente`";
 
     if($D) {
-          $sql=$sql."where ((cliid=idcli)and (`Estado`=1)) and (`Local`=".$Local.") ";
+          $sql=$sql." WHERE (`Estado`=1) and (`Local`=".$Local.") ";
       }else{
-          $sql=$sql."where (cliid=idcli)and ( `Local`=".$Local.") ";
+          $sql=$sql." WHERE (`Estado`< 3) and ( `Local`=".$Local.") ";
       }
 
     $sql=$sql." ORDER BY `Cliente` ;";
@@ -245,17 +242,27 @@ if ($modo==8){// tabla de cliente con señas
         if($row["Local"]==3){$LOC="D";};
 
             $Total=$formatter->formatCurrency( $row["total"], 'USD'); //, PHP_EOL;
+            $Cuenta=$formatter->formatCurrency( $row["Cuenta"], 'USD'); //, PHP_EOL;
             $fecha= substr ($row["um"],0,10) ;
-        echo '<tr ondblclick="TADE('.$row["idcli"].','.$row["Estado"].')"><td>'.$row["Cliente"].'</td><td>'.$row["dni"].'</td><td>'.$Total.'</td><td>'.$LOC ;
-        echo '</td><td>'.$fecha.'</td><td><button onclick="Liq('.$row["idcli"].')" class="btn btn-danger" title="Liquidar cuenta"><i class="fa fa-dollar"> </i></button></td></tr>';
+        echo '<tr ondblclick="TADE('.$row["idcli"].','.$row["Estado"].')"><td>'.$row["Cliente"].'</td><td>'.$row["dni"].'</td><td>'.$row["tel"].'</td>';
+        echo '<td>'.$Total.'</td><td>'.$Cuenta.'</td><td>'.$LOC.'</td><td>'.$fecha.'</td><td>';
+        echo '<button onclick="Liq('.$row["idcli"].')" class="btn btn-danger" title="Liquidar cuenta"><i class="fa fa-dollar"> </i></button></td></tr>';
 
     }
     echo '<script>$("#BT1NC tr").on("click",function(){ document.getElementById("verCli2").innerHTML=this.getElementsByTagName("th")[0].innerHTML ;});</script>';
 }// Finlistado seña x cliente
 
+
+if ($modo==88){// Solo muestra el cliente
+    $sql="SELECT `Cliente` FROM `t_cliente` WHERE `idcli`='".$D."' LIMIT 1; ";
+    $segmento = mysqli_query($conexion,$sql);
+    while ($row = mysqli_fetch_array($segmento)) {
+        print $row["Cliente"];
+    }
+}// Finlistado seña x cliente
 if ($modo==9){// tabla de cliente con señas
 
-    $sql="SELECT `idnc`, `cliid`, `uid`, `nnc`, `fecha`, `monto`, `nota` FROM `t_nc` WHERE `cliid`=".$D." ;";
+    $sql="SELECT `idnc`, `cliid`, `opid`, `nnc`, `fecha`, `monto`, `estado`, `Nota`, `Local` FROM `t_nc` WHERE `cliid`=".$D." ;";
 
     $formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
     // print $sql;
@@ -265,10 +272,10 @@ if ($modo==9){// tabla de cliente con señas
         $Total=$formatter->formatCurrency( $row["monto"], 'USD'); //, PHP_EOL;
         $fecha= substr ($row["fecha"],0,10) ;
 
-        echo '<tr onclick="V('.$row["idnc"].')"><td>'.str_pad($row["nnc"], 6, "0", STR_PAD_LEFT).'</td><td>'.$fecha.'</td><td class="TD">'.$Total.'</td><td>'.$row["nota"].'</td></tr>';
+        echo '<tr onclick="V('.$row["idnc"].')"><td>'.str_pad($row["nnc"], 6, "0", STR_PAD_LEFT).'</td><td>'.$fecha.'</td><td class="TD">'.$Total.'</td><td>'.$row["Nota"].'</td></tr>';
 
     }
-}// Fin  listado grantia
+}// Fin  listado de señas
 
 if ($modo==1000){// tabla de recibo reimpresion
     $formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
@@ -290,7 +297,6 @@ if ($modo==1000){// tabla de recibo reimpresion
     }
     echo '<script>ver();</script>';
 }// Fin Re impresion de facturas
-
 
 if ($modo==10){// tabla de recibo reimpresion
     $formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
@@ -515,7 +521,6 @@ if ($modo==12){// Listado de Articulo
     echo'</tbody></table><hr></h3>';
     /********************** Fin Local Deposito -********************************** */
 }// Fin  Listado de Articulos
-
 
 /*****************************  Fin listado completo ***********************************************************************/
 
@@ -1086,8 +1091,6 @@ if ($modo==104){// Informe Ventas Totales Burzaco
         echo ' </tbody></table><hr></h4>';
     }
 }// Fin Informes Ventas Totales Deposito
-
-
 
 if ($modo==105){// Informe Compras
     $formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);

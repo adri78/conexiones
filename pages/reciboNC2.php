@@ -13,7 +13,7 @@ $Tabla="";
 $Total=0;
 $formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
 
-$sql="SELECT `idnc`, `cliid`, `uid`, `nnc`, `fecha`, `monto`, `nota` FROM `t_nc` WHERE `idnc`=".$I." ;";
+$sql="SELECT `idnc`, `cliid`, `opid`, `nnc`, `fecha`, `monto`, `estado`, `Nota`, `Local` FROM `t_nc`  WHERE `idnc`=".$I." ;";
 
 $formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
 // print $sql;
@@ -22,7 +22,7 @@ while ($row = mysqli_fetch_array($segmento)) {
     $idCliente =$row["cliid"];
     $Monto=$formatter->formatCurrency( $row["monto"], 'USD'); //, PHP_EOL;
     $fecha= substr ($row["fecha"],0,10) ;
-    $OBS=$row["nota"];
+    $OBS=$row["Nota"];
     $NNC=str_pad($row["nnc"], 6, "0", STR_PAD_LEFT);
 }
  ;

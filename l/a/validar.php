@@ -1,44 +1,44 @@
-<?php
+<?php session_start(); ?>
 
-$usuario = substr ( $_POST['nn'],0,8);
-$pass = md5( substr (  $_POST['np'],0,8));
+<?php
+ //error_reporting(E_ERROR);
+
+$usuario = substr ( $_POST['nn'],0,10);
+$pass = md5( substr (  $_POST['np'],0,10));
 
 if(empty($usuario) || empty($pass)){
-	header("Location: ../index.php");
+	header("Location:../index.php");
+
+    echo'<script>window.location="../index.php" </script> ';
 	exit();
 }
 
-$conexion = mysqli_connect("localhost","root","","stockcm");
-if (!$conexion){
-    die("fallo de conexion" .mysql_error());
-}
-if (!mysqli_set_charset($conexion, "utf8")) {
-    printf("Error cargando el conjunto de caracteres utf8: %s\n", mysqli_error($conexion));
-}
-//mysqli_set_charset($conexion,"utf8");
+mysql_connect('localhost','adri78_cmb','Opendat0s') or die("Error al conectar " . mysql_error());
+mysql_select_db('adri78_cm') or die ("Error al seleccionar la Base de datos: " . mysql_error());
+$result = mysql_query("SELECT * from ver where (( U='" . $usuario . "') and (P='".$pass."'));");
 
-$SQL="SELECT * from ver where (( U='" . $usuario . "') and (P='".$pass."')) ;";
-//echo $SQL;
-$result = mysqli_query($conexion,$SQL);
+if($row = mysql_fetch_array($result)){
 
+    if($row['P'] ==  $pass ){
 
-
-if($row = mysqli_fetch_array($result)){
-	if($row['P'] ==  $pass ){
-		session_start();
 		$_SESSION['usuario'] = $usuario;
         $_SESSION['ok1'] = 1;
         $_SESSION['Local1'] =$row['L'];
         $_SESSION['real'] =$row['nreal'];
         $_SESSION['AMSJ']=$row['idver'];
-		header("Location: ../pages/index.php");
+		header("Location:../pages/index.php");
+      echo'<script>window.location="../pages/index.php" </script> ';
 
 	}else{
-		//header("Location: ../index.php");
+	 	header("Location: ../index.php");
+
+        echo'<script>window.location="../index.php" </script> ';
 		exit();
 	}
 }else{
-	//header("Location: ../index.php");
+	 header("Location: ../index.php");
+
+    echo'<script>window.location="../index.php" </script> ';
 	exit();
 }
 
@@ -51,7 +51,7 @@ $_SESSION['usuario'] = $usuario;
 $_SESSION['ok1'] = 1;
 $_SESSION['Local1'] =2;
 header("Location: ../pages/index.php");
-*/
+/* */
 
 /*
   // CIERRE DE SESIONES POR INACTIVIDAD
