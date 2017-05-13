@@ -91,22 +91,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa85dd04-7446-47af-9aad-dd757d3eaa5e" name="Default" comment="version mejorada">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pages/b.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pages/base.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pages/blank.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pages/buttons.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/l/validar.php" afterPath="$PROJECT_DIR$/l/validar.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/ListadoDinamico.php" afterPath="$PROJECT_DIR$/pages/ListadoDinamico.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/NC.php" afterPath="$PROJECT_DIR$/pages/NC.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/OrdenEquipo.php" afterPath="$PROJECT_DIR$/pages/OrdenEquipo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/Reparar.php" afterPath="$PROJECT_DIR$/pages/Reparar.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/Tabla_Repuestos.php" afterPath="$PROJECT_DIR$/pages/Tabla_Repuestos.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/cgi/Grabar.php" afterPath="$PROJECT_DIR$/pages/cgi/Grabar.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/cgi/LDComplementa.php" afterPath="$PROJECT_DIR$/pages/cgi/LDComplementa.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/cgi/tabla.php" afterPath="$PROJECT_DIR$/pages/cgi/tabla.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/reciboNC.php" afterPath="$PROJECT_DIR$/pages/reciboNC.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/reciboNC2.php" afterPath="$PROJECT_DIR$/pages/reciboNC2.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -178,13 +163,9 @@
       <file leaf-file-name="NC.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pages/NC.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="273" column="27" lean-forward="true" selection-start-line="273" selection-start-column="27" selection-end-line="273" selection-end-column="27" />
-              <folding>
-                <element signature="n#style#0;n#label#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#script#8;n#body#0;n#html#0;n#!!top" expanded="false" />
-              </folding>
+            <state relative-caret-position="-408">
+              <caret line="273" column="27" lean-forward="false" selection-start-line="273" selection-start-column="27" selection-end-line="273" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -192,8 +173,8 @@
       <file leaf-file-name="Grabar.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/cgi/Grabar.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="156" column="6" lean-forward="true" selection-start-line="156" selection-start-column="6" selection-end-line="156" selection-end-column="6" />
+            <state relative-caret-position="833">
+              <caret line="156" column="6" lean-forward="false" selection-start-line="156" selection-start-column="6" selection-end-line="156" selection-end-column="6" />
               <folding>
                 <element signature="e#1271#2222#0#PHP" expanded="false" />
                 <element signature="e#2236#2674#0#PHP" expanded="false" />
@@ -370,10 +351,9 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1296" />
-    <option name="height" value="1000" />
+    <option name="x" value="-7" />
+    <option name="width" value="1294" />
+    <option name="height" value="991" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -407,7 +387,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -496,6 +475,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Problems">
           <PATH>
@@ -754,7 +734,8 @@
       <workItem from="1494095916445" duration="22522000" />
       <workItem from="1494179499208" duration="1389000" />
       <workItem from="1494268111812" duration="14275000" />
-      <workItem from="1494348616755" duration="32946000" />
+      <workItem from="1494348616755" duration="33551000" />
+      <workItem from="1494699864763" duration="1221000" />
     </task>
     <task id="LOCAL-00001" summary="version mejorada">
       <created>1494275854710</created>
@@ -767,7 +748,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="927593000" />
+    <option name="totallyTimeSpent" value="929419000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -779,19 +760,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="7" />
-    <editor active="true" />
+    <frame x="-7" y="0" width="1294" height="991" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20985691" sideWeight="0.4925029" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18779343" sideWeight="0.4925029" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290938" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.3280757" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" x="0" y="260" width="1362" height="208" />
       <window_info id="Database" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2082671" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18601191" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19607843" sideWeight="0.50749713" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39747635" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13195549" sideWeight="0.5057283" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39747635" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -947,9 +927,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <marker date="1492571643521" expanded="true" signature="2037:2092" ph="SELECT `idve... ver" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1053,9 +1030,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
-          <folding>
-            <marker date="1490305131131" expanded="true" signature="2420:2572" ph="SELECT `IdV`... t_venta" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1076,7 +1050,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="343">
           <caret line="80" column="5" lean-forward="true" selection-start-line="80" selection-start-column="5" selection-end-line="80" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1084,7 +1057,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2499">
           <caret line="147" column="29" lean-forward="false" selection-start-line="147" selection-start-column="29" selection-end-line="147" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1201,7 +1173,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
@@ -1210,23 +1181,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/cgi/a.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="10" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/cgi/a.php" />
     <entry file="file://$PROJECT_DIR$/pages/reciboNC.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2499">
           <caret line="156" column="13" lean-forward="true" selection-start-line="156" selection-start-column="13" selection-end-line="156" selection-end-column="13" />
-          <folding>
-            <marker date="1494536796224" expanded="true" signature="344:453" ph="SELECT `idnc... t_nc" />
-            <marker date="1494536796224" expanded="true" signature="1013:1089" ph="SELECT `Clie... t_cliente" />
-            <marker date="1494536796224" expanded="true" signature="1371:1418" ph="SELECT `Pie`... varios" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1321,11 +1280,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="65" column="1" lean-forward="true" selection-start-line="65" selection-start-column="1" selection-end-line="65" selection-end-column="1" />
-          <folding>
-            <marker date="1494536458256" expanded="true" signature="407:516" ph="SELECT `idnc... t_nc" />
-            <marker date="1494536458256" expanded="true" signature="938:1023" ph="SELECT `Clie... t_cliente" />
-            <marker date="1494536458256" expanded="true" signature="1307:1354" ph="SELECT `Pie`... varios" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1353,8 +1307,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/cgi/Grabar.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="156" column="6" lean-forward="true" selection-start-line="156" selection-start-column="6" selection-end-line="156" selection-end-column="6" />
+        <state relative-caret-position="833">
+          <caret line="156" column="6" lean-forward="false" selection-start-line="156" selection-start-column="6" selection-end-line="156" selection-end-column="6" />
           <folding>
             <element signature="e#1271#2222#0#PHP" expanded="false" />
             <element signature="e#2236#2674#0#PHP" expanded="false" />
@@ -1429,13 +1383,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/NC.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="273" column="27" lean-forward="true" selection-start-line="273" selection-start-column="27" selection-end-line="273" selection-end-column="27" />
-          <folding>
-            <element signature="n#style#0;n#label#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#8;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
+        <state relative-caret-position="-408">
+          <caret line="273" column="27" lean-forward="false" selection-start-line="273" selection-start-column="27" selection-end-line="273" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
