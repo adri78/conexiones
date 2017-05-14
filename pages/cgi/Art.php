@@ -1,4 +1,5 @@
 <?php
+  session_start();
   // error_reporting(0); 
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $HOY = date("Y-m-d H:i:s"); 
@@ -24,7 +25,6 @@ if(isset($_POST["S1"])){ $S1=$_POST["S1"]; }
 if(isset($_POST["S2"])){ $S2=$_POST["S2"]; }
 if(isset($_POST["S3"])){ $S3=$_POST["S3"]; }
 if(isset($_POST["Cat"])){ $Cat=$_POST["Cat"]; }
- 
 
 
 if ($H==1) { // ver articulo
@@ -35,7 +35,11 @@ if ($H==1) { // ver articulo
              $Articulo= $row["Articulo"]; 
              $Codigo=$row["Codigo"];
              $ObsID=$row["ObsID"];
-             $Costo=$row["Costo"]; 
+          if( $_SESSION['Local1'] ==4){
+              $Costo=$row["Costo"];
+          }else{
+              $Costo= "*.**";
+          }
              $P1=$row["P1"];
              $P2=$row["P2"];
              $P3=$row["P3"];
@@ -57,9 +61,14 @@ if ($H==2) { // ver articulo
       $sql= $sql."','".$Cod."','".$Obs."','".$Cos."','".$P1."','".$P2."','".$P3."','".$S1."','".$S2."','".$S3."','".$Cat."' );";
 
   }else{// Actulizar
+         if ($_SESSION['Local1'] ==4) { // solo si es el administrador
+              $sql = "UPDATE `t_art` SET `Articulo`='" . $Art . "',`Codigo`='" . $Cod . "',`ObsID`='" . $Obs . "',`Costo`='" . $Cos . "',`P1`='" . $P1 . "',`P2`='" . $P2;
+              $sql = $sql . "',`P3`='" . $P3 . "',`S1`='" . $S1 . "',`S2`='" . $S2 . "',`S3`='" . $S3 . "',`CatID`='" . $Cat . "' WHERE `idart`=" . $ID . " ;";
+         }else{
+             $sql = "UPDATE `t_art` SET `Articulo`='" . $Art . "',`Codigo`='" . $Cod . "',`ObsID`='" . $Obs . "',`P1`='" . $P1 . "',`P2`='" . $P2;
+             $sql = $sql . "',`P3`='" . $P3 . "',`S1`='" . $S1 . "',`S2`='" . $S2 . "',`S3`='" . $S3 . "',`CatID`='" . $Cat . "' WHERE `idart`=" . $ID . " ;";
 
-      $sql="UPDATE `t_art` SET `Articulo`='".$Art."',`Codigo`='".$Cod."',`ObsID`='".$Obs."',`Costo`='".$Cos."',`P1`='".$P1."',`P2`='".$P2;
-      $sql=$sql."',`P3`='".$P3."',`S1`='".$S1."',`S2`='".$S2."',`S3`='".$S3."',`CatID`='".$Cat."' WHERE `idart`=".$ID." ;";
+         }
      // print $sql;
   }//fin grabar art
   // print $sql;

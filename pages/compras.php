@@ -1,6 +1,6 @@
 <?php  include 'contenido.php';
 
-    if( $_SESSION['Local1'] !=4){
+    if( $_SESSION['Local1'] < 4){
         header("Location: ../index.php");
         exit();
     }

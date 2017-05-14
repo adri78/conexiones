@@ -70,7 +70,7 @@
                         <div class="col-xs-9">
                             <h4><Select id="Listados">
                                     <option value="1">Stock General</option>
-                                    <option value="2">Stock Costos</option>
+<?php  if( $_SESSION['Local1'] ==4){  echo '<option value="2">Stock Costos</option>'; } ?>
                                     <option value="3">Stock Local Adrogue</option>
                                     <option value="4">Stock Local Burzaco</option>
                                     <option value="5">Stock Local Deposito</option>

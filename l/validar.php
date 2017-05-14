@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    session_destroy();
 
 $usuario = substr ( $_POST['nn'],0,8);
 $pass = md5( substr (  $_POST['np'],0,8));

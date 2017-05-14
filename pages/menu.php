@@ -1,8 +1,12 @@
 <?php
+    //session_start();
+
     if( $_SESSION['Local1']==1){ $Lugar="Adrogue";}
     if( $_SESSION['Local1']==2){ $Lugar="Burzaco";}
     if( $_SESSION['Local1']==3){ $Lugar="Deposito";}
     if( $_SESSION['Local1']==4){ $Lugar="Admin";}
+    if( $_SESSION['Local1']==5){ $Lugar="Gerente";}
+    if( $_SESSION['Local1']==6){ $Lugar="Jefe";}
 ?>
 <?php
     include 'cgi/config2.inc';
@@ -42,7 +46,7 @@
                           <span class="icon-bar"></span>
                       </button>
                       <a class="navbar-brand" >Stock 0.1 - <?php
-                          if ($_SESSION['Local1'] ==4) { ?>
+                          if ($_SESSION['Local1'] > 3) { ?>
                                   <h4 style="position: fixed; top:0.25em;left: 110px;"> <select name="CLocales" id="CLocales" onchange="Reload();">
                                           <option value="3">Deposito </option>
                                           <option value="1"> Adrogue </option>
@@ -81,7 +85,7 @@
 
                     </ul>
                </li>
-               <?php   if( $_SESSION['Local1'] ==4) {
+               <?php   if( $_SESSION['Local1'] >3) {
                  echo '<li><a class="dropdown-toggle" data-toggle="dropdown" href="#" > Compras <i class="fa fa-caret-down"></i></a><ul class="dropdown-menu dropdown-messages">';
                  echo '<li><a href = "compras.php" > Telefonos </a></li> ';
                  echo '<li><a href="repuestos.php"> Repuestos</a></li>';
@@ -142,7 +146,7 @@
     <!-- *************************************************************************** -->
    <script>
     /* ****************************************** */
-       var Local = <?php if( $_SESSION['Local1']!=4)  { echo $_SESSION['Local1']; } else { echo '3';} ?> ;
+       var Local = <?php if( $_SESSION['Local1'] < 4)  { echo $_SESSION['Local1']; } else { echo '3';} ?> ;
       // console.log("Soy el local "+ Local);
        var verMovil=0;
        var verPedidos=0;
@@ -186,7 +190,8 @@ function resp(id){
     $('#ModalMSJ').modal('show');
     document.getElementById('mensajear').focus;
 }
-    function mPedir(){var a={};$.post("cgi/version.php?V=2",a,function(a){a>verPedidos&&(verPedidos=a,$("#lpedidos").load("cgi/tabla.php?T=5&L="+Local,function(a){}))})}function BorPedido(a){var b={ID:a,M:5};confirm("Borrar pendiente de mercaderia?")&&$.post("cgi/Grabar.php?",b,function(){})}
+
+function mPedir(){var a={};$.post("cgi/version.php?V=2",a,function(a){a>verPedidos&&(verPedidos=a,$("#lpedidos").load("cgi/tabla.php?T=5&L="+Local,function(a){}))})}function BorPedido(a){var b={ID:a,M:5};confirm("Borrar pendiente de mercaderia?")&&$.post("cgi/Grabar.php?",b,function(){})}
  </script>
 
  <div class="modal fade" id="ModalMSJ" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">

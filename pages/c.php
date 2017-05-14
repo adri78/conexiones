@@ -90,6 +90,8 @@
                             <option value="1" selected>Adrogue</option>
                             <option value="2">Burzaco</option>
                             <option value="3">Deposito</option>
+                            <option value="6">Jefe </option>
+                            <option value="5">Gerente </option>
                             <option value="4">Administrador</option>
                         </select>
                     </div>
@@ -128,15 +130,15 @@
     var tmpUC;
 function BorraU(){
         var x= parseInt(document.getElementById("UID").innerHTML) ;
-        if(x >0){
-            if(confirm(" ATENCION !! Borrar Usuario?")){
+    if(x >0){
+       if(confirm(" ATENCION !! Borrar Usuario?")){
                 var d = {ID:x,H:5};
                 $.post('cgi/Art.php', d, function (res) {
                     LimpiaU();
                     miniu();
                 });
-            }
         }
+    }
 }
 function LimpiaU(){
     document.getElementById("UID").innerHTML="";

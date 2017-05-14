@@ -194,7 +194,12 @@ if($modo==6){// Lista user
         $ID = $row["idver"];
         $U = $row["U"];
         $L = $row["L"];
-        if($L==4){$L="Amin"; };
+        if($L==1){$L="Adrogue";};
+        if($L==2){$L="Burzaco";};
+        if($L==3){$L="Deposito";};
+        if($L==4){$L="Amin";};
+        if($L==5){$L="Gerente";};
+        if($L==6){$L="Jefe";};
         $R = $row["nreal"];
         echo '<tr onclick="vtuse(' . $ID . ')"><td>' . $R . '</td><td>' . $U . '</td><td class="TC">' . $L . '</td></tr>';
     }
